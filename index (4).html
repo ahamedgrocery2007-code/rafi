@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Audit - ₹1 Offer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1a1a1d;
+      color: #f2f0f4;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background-color: #904d00;
+      color: white;
+      padding: 4px 16px;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 11px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+    }
+
+    .badge-icon {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -1.4px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: #ffdcc3;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #e3e2e6;
+      max-width: 672px;
+      margin: 0 auto;
+      letter-spacing: -0.1px;
+      line-height: 1.625;
+    }
+
+    /* Criteria Grid */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .criteria-card {
+      background-color: #2f3034;
+      padding: 24px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 238px;
+    }
+
+    .criteria-card:nth-child(5) {
+      grid-column: 2 / span 2;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .criteria-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .criteria-number {
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffb77d;
+      letter-spacing: -0.6px;
+    }
+
+    .criteria-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .criteria-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f2f0f4;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      line-height: 1.44;
+    }
+
+    .criteria-description {
+      font-size: 14px;
+      color: #e3e2e6;
+      line-height: 1.57;
+      margin-bottom: 16px;
+    }
+
+    .criteria-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background-color: transparent;
+      color: #dce1ff;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.55px;
+      text-transform: uppercase;
+      padding-top: 8px;
+    }
+
+    .criteria-tag-icon {
+      width: 11px;
+      height: 10.5px;
+    }
+
+    /* Conversion Callout */
+    .conversion-section {
+      background: linear-gradient(
+        to right,
+        rgba(227, 226, 230, 0.1),
+        rgba(227, 226, 230, 0.2) 50%,
+        rgba(227, 226, 230, 0.1)
+      );
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+      margin-bottom: 64px;
+    }
+
+    .conversion-content {
+      flex: 1;
+    }
+
+    .conversion-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffb77d;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .conversion-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: #f2f0f4;
+      line-height: 1.27;
+      margin-bottom: 4px;
+      letter-spacing: -0.6px;
+    }
+
+    .conversion-description {
+      font-size: 14px;
+      color: #e3e2e6;
+      line-height: 1.57;
+      margin-top: 8px;
+    }
+
+    .conversion-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .price-section {
+      text-align: right;
+    }
+
+    .regular-price {
+      font-size: 14px;
+      color: #e3e2e6;
+      text-decoration: line-through;
+      text-decoration-skip-ink: none;
+    }
+
+    .offer-price {
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffdcc3;
+      line-height: 1.27;
+      letter-spacing: -0.6px;
+    }
+
+    /* Form Section */
+    .form-section {
+      background-color: #2f3034;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+
+    .form-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #f2f0f4;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #e3e2e6;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(227, 226, 230, 0.2);
+      border-radius: 8px;
+      background-color: rgba(227, 226, 230, 0.05);
+      color: #f2f0f4;
+      font-size: 14px;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #904d00;
+      background-color: rgba(227, 226, 230, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(227, 226, 230, 0.5);
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #904d00;
+      color: white;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0.15px;
+      cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(217, 119, 6, 0.25);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .cta-button:hover {
+      background-color: #b35a00;
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 12px rgba(217, 119, 6, 0.35);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    .cta-button-icon {
+      width: 11px;
+      height: 13px;
+    }
+
+    /* Message Alerts */
+    .message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+
+    .message.success {
+      background-color: rgba(76, 175, 80, 0.2);
+      color: #4caf50;
+      border: 1px solid rgba(76, 175, 80, 0.5);
+    }
+
+    .message.error {
+      background-color: rgba(244, 67, 54, 0.2);
+      color: #f44336;
+      border: 1px solid rgba(244, 67, 54, 0.5);
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .criteria-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .criteria-card:nth-child(5) {
+        grid-column: 1;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .conversion-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 24px;
+      }
+
+      .conversion-action {
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .cta-button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .price-section {
+        text-align: left;
+      }
+
+      .form-section {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Badge -->
+    <div style="text-align: center;">
+      <div class="badge">
+        <span class="badge-icon">📍</span>
+        START HERE • ZERO RISK
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>Your LinkedIn Audit For Just<br><span>₹1.</span></h1>
+      <p>
+        No automated PDF generators. No artificial intelligence fluff. A comprehensive, 
+        human-led diagnostic breakdown of your current LinkedIn architecture for less than a cup of cutting chai.
+      </p>
+    </div>
+
+    <!-- Criteria Grid -->
+    <div class="criteria-grid">
+      <!-- Criteria 1 -->
+      <div class="criteria-card">
+        <div>
+          <div class="criteria-header">
+            <div class="criteria-number">01</div>
+            <svg class="criteria-icon" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm.5-10H9v5l4.25 2.55.75-1.23-4.5-2.71z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="criteria-title">Profile Positioning & Value Hook</h3>
+          <p class="criteria-description">
+            Does your headline identify who you help and why you matter within the first 3 seconds of a profile visit?
+          </p>
+        </div>
+        <div class="criteria-tag">
+          <svg class="criteria-tag-icon" viewBox="0 0 11 11" fill="none">
+            <path d="M5.5 0C2.46 0 0 2.46 0 5.5S2.46 11 5.5 11 11 8.54 11 5.5 8.54 0 5.5 0zm0 10C2.84 10 1 8.16 1 5.5S2.84 1 5.5 1 10 2.84 10 5.5 8.16 10 5.5 10zm.5-7H4.5v3l3.15 1.87.75-1.23-2.4-1.44v-2.2z" fill="#dce1ff"/>
+          </svg>
+          HEADLINE & ABOUT SECTION AUDIT
+        </div>
+      </div>
+
+      <!-- Criteria 2 -->
+      <div class="criteria-card">
+        <div>
+          <div class="criteria-header">
+            <div class="criteria-number">02</div>
+            <svg class="criteria-icon" viewBox="0 0 20 20" fill="none">
+              <path d="M16 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H4V4h12v12zm-6-7l-3 4h12V4H5l5 5z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="criteria-title">Content Strategy & Narrative Pillars</h3>
+          <p class="criteria-description">
+            Evaluating your topic portfolio to determine whether your posts position you as a thought leader or generic commentator.
+          </p>
+        </div>
+        <div class="criteria-tag">
+          <svg class="criteria-tag-icon" viewBox="0 0 11 11" fill="none">
+            <path d="M5.5 0C2.46 0 0 2.46 0 5.5S2.46 11 5.5 11 11 8.54 11 5.5 8.54 0 5.5 0zm0 10C2.84 10 1 8.16 1 5.5S2.84 1 5.5 1 10 2.84 10 5.5 8.16 10 5.5 10zm.5-7H4.5v3l3.15 1.87.75-1.23-2.4-1.44v-2.2z" fill="#dce1ff"/>
+          </svg>
+          EDITORIAL BALANCE INSPECTION
+        </div>
+      </div>
+
+      <!-- Criteria 3 -->
+      <div class="criteria-card">
+        <div>
+          <div class="criteria-header">
+            <div class="criteria-number">03</div>
+            <svg class="criteria-icon" viewBox="0 0 20 20" fill="none">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="criteria-title">Hooks, Pacing & Post Structure</h3>
+          <p class="criteria-description">
+            Auditing the readability, click-through dropoffs, whitespace dynamics, and the "see more" click threshold.
+          </p>
+        </div>
+        <div class="criteria-tag">
+          <svg class="criteria-tag-icon" viewBox="0 0 11 11" fill="none">
+            <path d="M5.5 0C2.46 0 0 2.46 0 5.5S2.46 11 5.5 11 11 8.54 11 5.5 8.54 0 5.5 0zm0 10C2.84 10 1 8.16 1 5.5S2.84 1 5.5 1 10 2.84 10 5.5 8.16 10 5.5 10zm.5-7H4.5v3l3.15 1.87.75-1.23-2.4-1.44v-2.2z" fill="#dce1ff"/>
+          </svg>
+          CONVERSION FORMATTING CHECK
+        </div>
+      </div>
+
+      <!-- Criteria 4 -->
+      <div class="criteria-card">
+        <div>
+          <div class="criteria-header">
+            <div class="criteria-number">04</div>
+            <svg class="criteria-icon" viewBox="0 0 20 20" fill="none">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="criteria-title">Personal Branding Resonance</h3>
+          <p class="criteria-description">
+            Checking whether your distinctive intellectual voice is intact or suffocated by sanitized executive jargon.
+          </p>
+        </div>
+        <div class="criteria-tag">
+          <svg class="criteria-tag-icon" viewBox="0 0 11 11" fill="none">
+            <path d="M5.5 0C2.46 0 0 2.46 0 5.5S2.46 11 5.5 11 11 8.54 11 5.5 8.54 0 5.5 0zm0 10C2.84 10 1 8.16 1 5.5S2.84 1 5.5 1 10 2.84 10 5.5 8.16 10 5.5 10zm.5-7H4.5v3l3.15 1.87.75-1.23-2.4-1.44v-2.2z" fill="#dce1ff"/>
+          </svg>
+          AUTHENTICITY ASSESSMENT
+        </div>
+      </div>
+
+      <!-- Criteria 5 -->
+      <div class="criteria-card">
+        <div style="flex: 1;">
+          <div style="display: flex; gap: 8px; align-items: flex-start; margin-bottom: 16px;">
+            <div class="criteria-number" style="margin-top: -4px;">05</div>
+            <div>
+              <h3 class="criteria-title" style="margin-top: 0;">Practical Growth & Commercial Opportunities</h3>
+              <p class="criteria-description" style="margin-bottom: 0;">
+                Pinpointing underleveraged assets: profile banner real estate, call-to-action link anchors, and executive newsletter distribution.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: rgba(227, 226, 230, 0.1); padding: 8px 16px; border-radius: 12px; display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
+          <span style="font-size: 11px; font-weight: 700; color: #dce1ff; letter-spacing: 0.55px; text-transform: uppercase; line-height: 1.45;">
+            ⭐ COMMERCIAL<br>READINESS SCORE
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conversion Section -->
+    <div class="conversion-section">
+      <div class="conversion-content">
+        <div class="conversion-label">LIMITED ADVISORY BANDWIDTH</div>
+        <h2 class="conversion-title">Stop Guessing. Start Knowing.</h2>
+        <p class="conversion-description">
+          We limit ₹1 audits to 10 qualified executives per calendar week to preserve analysis depth.
+        </p>
+      </div>
+      <div class="conversion-action">
+        <div class="price-section">
+          <div class="regular-price">₹4,999 Regular</div>
+          <div class="offer-price">₹1 Token<br>Fee</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-section">
+      <h2>Get Your ₹1 LinkedIn Audit</h2>
+      <div id="messageAlert" class="message"></div>
+      
+      <form id="auditForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <div style="text-align: center;">
+          <button type="submit" class="cta-button">
+            Get My ₹1 LinkedIn Audit
+            <svg class="cta-button-icon" viewBox="0 0 11 13" fill="none">
+              <path d="M6.5 0L5.5 1L9 4.5H0V5.5H9L5.5 9L6.5 10L11 5.5L6.5 0Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // AppScript deployment URL
+    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxekfy4R4OJSzhOi2-f92RHtwNsnkD_Yy6ipfNmVFSLxtWAACQxMBuf_25_zpAEoHQA/exec';
+    
+    // Payment URL
+    const PAYMENT_URL = 'https://payments.cashfree.com/forms/getaudit';
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      // Validate
+      if (!name || !email || !phone) {
+        showError('Please fill in all fields');
+        return;
+      }
+
+      // Show processing message
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Processing...';
+
+      // Build AppScript URL with query parameters
+      const appscriptUrl = APPSCRIPT_URL + '?' + new URLSearchParams({
+        name: name,
+        email: email,
+        phone: phone,
+        redirect: 'true'
+      }).toString();
+
+      // Show success message immediately
+      showSuccess();
+
+      // Navigate to AppScript URL (which will save to Sheets and redirect to payment)
+      // Using a small delay to let the user see the success message
+      setTimeout(() => {
+        window.location.href = appscriptUrl;
+      }, 1500);
+    }
+
+    function showSuccess() {
+      const messageAlert = document.getElementById('messageAlert');
+      messageAlert.textContent = '✓ Form submitted successfully! Redirecting to payment...';
+      messageAlert.className = 'message success show';
+    }
+
+    function showError(message) {
+      const messageAlert = document.getElementById('messageAlert');
+      messageAlert.textContent = '✗ ' + (message || 'Failed to submit form. Please try again.');
+      messageAlert.className = 'message error show';
+
+      // Auto-hide error after 5 seconds
+      setTimeout(() => {
+        messageAlert.classList.remove('show');
+      }, 5000);
+
+      // Re-enable button
+      const submitBtn = document.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
